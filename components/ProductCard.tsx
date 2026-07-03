@@ -1,65 +1,40 @@
-import ProductCard from "./ProductCard";
+"use client";
+import { Heart } from "lucide-react";
+import { useState } from "react";
 
-const products = [
-  { id: 1, name: "Robe Flamboyant", description: "Col montant - coupe ample", price: 59, isNew: true },
-  { id: 2, name: "Ensemble Dune", description: "Veste + pantalon large", price: 89, isNew: true },
-  { id: 3, name: "Robe Lagon", description: "Manches longues - fluide", price: 45 },
-  { id: 4, name: "Manteau Farah", description: "Long - ceinturé - chic", price: 110 },
-  { id: 5, name: "Robe Safa", description: "Coupe droite - col rond", price: 65 },
-  { id: 6, name: "Ensemble Warda", description: "Pantalon + tunique", price: 95 },
-  { id: 7, name: "Blouse Amira", description: "Poignets boutonnés - élégant", price: 55 },
-  { id: 8, name: "Abaya Layla", description: "Oversize - casual chic", price: 120 },
-  { id: 9, name: "Robe Zara", description: "Col officier - sobre", price: 72 },
-  { id: 10, name: "Ensemble Hana", description: "Blazer long + large", price: 130 },
-];
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image?: string;
+  isNew?: boolean;
+};
 
-const categories = ["Robes", "Hauts", "Vestes", "Ensembles"];
+export default function ProductCard({ product }: { product: Product }) {
+  const [liked, setLiked] = useState(false);
 
-export default function Collection() {
   return (
-    <main style={{ background: "#fff" }}>
-
-      <section id="collection" style={{ padding: "44px 28px" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "24px" }}>
-          <h2 className="font-playfair" style={{ fontSize: "20px", fontWeight: 400, color: "#1A0F0A" }}>
-            Nos <em>meilleures ventes</em>
-          </h2>
-          <a href="#" style={{ fontSize: "10px", color: "#888", letterSpacing: "2px", textTransform: "uppercase", borderBottom: "0.5px solid #ccc", paddingBottom: "1px", textDecoration: "none" }}>Voir tout</a>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px" }}>
-          {products.slice(0, 4).map(p => <ProductCard key={p.id} product={p} />)}
-        </div>
-      </section>
-
-      <section style={{ padding: "0 28px 44px" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "18px" }}>
-          <h2 className="font-playfair" style={{ fontSize: "20px", fontWeight: 400, color: "#1A0F0A" }}>
-            Nos <em>collections</em>
-          </h2>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px" }}>
-          {categories.map(cat => (
-            <div key={cat} style={{ cursor: "pointer" }}>
-              <div style={{ background: "#F0E8DE", aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "8px" }}>
-                <span style={{ fontSize: "10px", color: "#C4A882", letterSpacing: "2px" }}>photo</span>
-              </div>
-              <p style={{ fontSize: "11px", color: "#1A0F0A", letterSpacing: "2px", textTransform: "uppercase" }}>{cat}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section style={{ padding: "0 28px 44px" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "24px" }}>
-          <h2 className="font-playfair" style={{ fontSize: "20px", fontWeight: 400, color: "#1A0F0A" }}>
-            Tous nos <em>articles</em>
-          </h2>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }} className="md:grid-cols-4 lg:grid-cols-5">
-          {products.map(p => <ProductCard key={p.id} product={p} />)}
-        </div>
-      </section>
-
-    </main>
+    <div className="group cursor-pointer">
+      <div style={{ position: "relative", background: "#F4EFE9", aspectRatio: "3/4", marginBottom: "10px", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {product.image ? (
+          <img src={product.image} alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        ) : (
+          <span className="font-playfair" style={{ fontStyle: "italic", fontSize: "10px", color: "#C4A882", letterSpacing: "2px" }}>photo</span>
+        )}
+        {product.isNew && (
+          <div style={{ position: "absolute", top: "8px", left: "8px", background: "#1A0F0A", color: "#fff", fontSize: "8px", padding: "3px 7px", letterSpacing: "1px" }}>NEW</div>
+        )}
+        <button
+          onClick={() => setLiked(!liked)}
+          className="group-hover:opacity-100"
+          style={{ position: "absolute", top: "8px", right: "8px", background: "rgba(255,255,255,0.9)", border: "none", width: "28px", height: "28px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", opacity: 0, transition: "opacity 0.2s" }}>
+          <Heart size={12} fill={liked ? "#1A0F0A" : "none"} color="#1A0F0A" />
+        </button>
+      </div>
+      <p style={{ fontSize: "12px", color: "#1A0F0A", marginBottom: "3px" }}>{product.name}</p>
+      <p style={{ fontSize: "11px", color: "#C4956A", fontWeight: 500 }}>{product.price},00 €</p>
+    </div>
   );
 }
