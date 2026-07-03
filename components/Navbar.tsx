@@ -6,40 +6,50 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav style={{ background: "#FFFCF9", borderBottom: "0.5px solid #EAE0D5", height: "72px" }}
-      className="sticky top-0 z-50 px-8 flex items-center justify-between">
-
-      <div className="hidden md:flex gap-7 text-xs" style={{ color: "#9C8270", letterSpacing: "1.5px", textTransform: "uppercase" }}>
-        <a href="#" className="hover:text-[#7A4F2E] transition-colors">Nouveautés</a>
-        <a href="#" className="hover:text-[#7A4F2E] transition-colors">Collections</a>
-        <a href="#" className="hover:text-[#7A4F2E] transition-colors">À propos</a>
+    <>
+      <div style={{ background: "#1A0F0A", padding: "7px", textAlign: "center", fontSize: "10px", color: "#C4956A", letterSpacing: "3px" }}>
+        LIVRAISON OFFERTE DÈS 80€ &nbsp;·&nbsp; RETOURS 30 JOURS &nbsp;·&nbsp; PAIEMENT SÉCURISÉ
       </div>
 
-      <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? <X size={18} color="#7A4F2E" /> : <Menu size={18} color="#7A4F2E" />}
-      </button>
+      <nav style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5", height: "68px" }}
+        className="sticky top-0 z-50 px-7 grid items-center"
+        style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5", height: "68px", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", padding: "0 28px", position: "sticky", top: 0, zIndex: 50 }}>
 
-      <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <div style={{ width: "1px", height: "10px", background: "#C4956A" }} />
-        <span className="font-playfair" style={{ fontSize: "20px", letterSpacing: "10px", color: "#1A0F0A" }}>HIJRA</span>
-        <span className="font-playfair italic" style={{ fontSize: "9px", letterSpacing: "5px", color: "#9C8270" }}>modest fashion</span>
-        <div style={{ width: "1px", height: "10px", background: "#C4956A" }} />
-      </div>
+        <div className="hidden md:flex gap-5 text-xs" style={{ color: "#666", letterSpacing: "1.5px", textTransform: "uppercase" }}>
+          <a href="#" style={{ color: "#1A0F0A", borderBottom: "0.5px solid #1A0F0A", paddingBottom: "1px" }}>Nouveautés</a>
+          <a href="#" className="hover:text-[#1A0F0A] transition-colors">Collections</a>
+          <a href="#" className="hover:text-[#1A0F0A] transition-colors">Robes</a>
+          <a href="#" className="hover:text-[#1A0F0A] transition-colors">Hauts</a>
+        </div>
 
-      <div className="flex gap-5" style={{ color: "#7A4F2E" }}>
-        <button className="hover:opacity-60 transition-opacity"><Search size={17} /></button>
-        <button className="hover:opacity-60 transition-opacity"><Heart size={17} /></button>
-        <button className="hover:opacity-60 transition-opacity"><ShoppingBag size={17} /></button>
-      </div>
+        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X size={18} color="#1A0F0A" /> : <Menu size={18} color="#1A0F0A" />}
+        </button>
+
+        <div style={{ textAlign: "center" }}>
+          <div className="font-playfair" style={{ fontSize: "22px", letterSpacing: "10px", color: "#1A0F0A", lineHeight: 1 }}>HIJRA</div>
+          <div className="font-playfair italic" style={{ fontSize: "9px", letterSpacing: "4px", color: "#aaa", marginTop: "2px" }}>modest fashion</div>
+        </div>
+
+        <div className="flex gap-5 items-center justify-end" style={{ color: "#1A0F0A" }}>
+          <button className="hover:opacity-60 transition-opacity"><Search size={17} /></button>
+          <button className="hover:opacity-60 transition-opacity"><Heart size={17} /></button>
+          <button className="hover:opacity-60 transition-opacity relative">
+            <ShoppingBag size={17} />
+            <span style={{ position: "absolute", top: "-6px", right: "-6px", background: "#1A0F0A", color: "#fff", fontSize: "8px", width: "14px", height: "14px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>0</span>
+          </button>
+        </div>
+      </nav>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full py-6 flex flex-col gap-4 px-8"
-          style={{ background: "#FFFCF9", borderBottom: "0.5px solid #EAE0D5" }}>
-          <a href="#" style={{ color: "#9C8270", fontSize: "12px", letterSpacing: "1.5px" }}>NOUVEAUTÉS</a>
-          <a href="#" style={{ color: "#9C8270", fontSize: "12px", letterSpacing: "1.5px" }}>COLLECTIONS</a>
-          <a href="#" style={{ color: "#9C8270", fontSize: "12px", letterSpacing: "1.5px" }}>À PROPOS</a>
+        <div className="sticky top-[75px] z-40 flex flex-col gap-4 px-7 py-6 md:hidden"
+          style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5" }}>
+          <a href="#" style={{ fontSize: "11px", color: "#1A0F0A", letterSpacing: "2px", textTransform: "uppercase" }}>Nouveautés</a>
+          <a href="#" style={{ fontSize: "11px", color: "#666", letterSpacing: "2px", textTransform: "uppercase" }}>Collections</a>
+          <a href="#" style={{ fontSize: "11px", color: "#666", letterSpacing: "2px", textTransform: "uppercase" }}>Robes</a>
+          <a href="#" style={{ fontSize: "11px", color: "#666", letterSpacing: "2px", textTransform: "uppercase" }}>Hauts</a>
         </div>
       )}
-    </nav>
+    </>
   );
 }
