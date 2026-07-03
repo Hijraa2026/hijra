@@ -7,7 +7,17 @@ type Product = {
   name: string;
   description: string;
   price: number;
+"use client";
+import { Heart } from "lucide-react";
+import { useState } from "react";
+
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
   image?: string;
+  isNew?: boolean;
 };
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -15,26 +25,25 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group cursor-pointer">
-      <div className="relative overflow-hidden mb-3"
-        style={{ background: "#EDE3D8", aspectRatio: "2/3" }}>
+      <div style={{ position: "relative", background: "#F4EFE9", aspectRatio: "3/4", marginBottom: "10px", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
         {product.image ? (
           <img src={product.image} alt={product.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="font-playfair italic" style={{ fontSize: "10px", color: "#C4A882", letterSpacing: "2px" }}>photo</span>
-          </div>
+          <span className="font-playfair" style={{ fontStyle: "italic", fontSize: "10px", color: "#C4A882", letterSpacing: "2px" }}>photo</span>
         )}
-        <button onClick={() => setLiked(!liked)}
-          className="absolute top-2 right-2 transition-all opacity-0 group-hover:opacity-100 p-1"
-          style={{ background: "#FFFCF9" }}>
-          <Heart size={12} fill={liked ? "#7A4F2E" : "none"} color="#7A4F2E" />
+        {product.isNew && (
+          <div style={{ position: "absolute", top: "8px", left: "8px", background: "#1A0F0A", color: "#fff", fontSize: "8px", padding: "3px 7px", letterSpacing: "1px" }}>NEW</div>
+        )}
+        <button
+          onClick={() => setLiked(!liked)}
+          style={{ position: "absolute", top: "8px", right: "8px", background: "rgba(255,255,255,0.9)", border: "none", width: "28px", height: "28px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", opacity: 0, transition: "opacity 0.2s" }}
+          className="group-hover:opacity-100">
+          <Heart size={12} fill={liked ? "#1A0F0A" : "none"} color="#1A0F0A" />
         </button>
       </div>
-      <p className="font-playfair" style={{ fontSize: "12px", color: "#1A0F0A", marginBottom: "2px", letterSpacing: "0.5px" }}>
-        {product.name}
-      </p>
-      <p style={{ fontSize: "11px", color: "#9C8270" }}>{product.price} €</p>
+      <p style={{ fontSize: "12px", color: "#1A0F0A", marginBottom: "3px" }}>{product.name}</p>
+      <p style={{ fontSize: "11px", color: "#C4956A", fontWeight: 500 }}>{product.price},00 €</p>
     </div>
   );
 }
