@@ -13,7 +13,12 @@ const products = [
   { id: 10, name: "Ensemble Hana", description: "Blazer long + large", price: 130 },
 ];
 
-const categories = ["Robes", "Hauts", "Vestes", "Ensembles"];
+const categories = [
+  { name: "Robes" },
+  { name: "Hauts" },
+  { name: "Vestes" },
+  { name: "Ensembles" },
+];
 
 export default function Collection() {
   return (
@@ -39,11 +44,13 @@ export default function Collection() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px" }}>
           {categories.map(cat => (
-            <div key={cat} style={{ cursor: "pointer" }}>
-              <div style={{ background: "#F0E8DE", aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "8px" }}>
+            <div key={cat.name} style={{ cursor: "pointer", position: "relative" }}>
+              <div style={{ background: "#F0E8DE", aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
                 <span style={{ fontSize: "10px", color: "#C4A882", letterSpacing: "2px" }}>photo</span>
+                <div style={{ position: "absolute", inset: 0, background: "rgba(26,15,10,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <p style={{ fontSize: "12px", color: "#fff", letterSpacing: "3px", textTransform: "uppercase", fontWeight: 500 }}>{cat.name}</p>
+                </div>
               </div>
-              <p style={{ fontSize: "11px", color: "#1A0F0A", letterSpacing: "2px", textTransform: "uppercase" }}>{cat}</p>
             </div>
           ))}
         </div>
@@ -55,7 +62,7 @@ export default function Collection() {
             Tous nos <em>articles</em>
           </h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }} className="md:grid-cols-4 lg:grid-cols-5">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
           {products.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
       </section>
