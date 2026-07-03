@@ -11,9 +11,7 @@ export default function Navbar() {
         LIVRAISON OFFERTE DÈS 80€ &nbsp;·&nbsp; RETOURS 30 JOURS &nbsp;·&nbsp; PAIEMENT SÉCURISÉ
       </div>
 
-      <nav style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5", height: "68px" }}
-        className="sticky top-0 z-50 px-7 grid items-center"
-        style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5", height: "68px", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", padding: "0 28px", position: "sticky", top: 0, zIndex: 50 }}>
+      <nav style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5", height: "68px", display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", padding: "0 28px", position: "sticky", top: 0, zIndex: 50 }}>
 
         <div className="hidden md:flex gap-5 text-xs" style={{ color: "#666", letterSpacing: "1.5px", textTransform: "uppercase" }}>
           <a href="#" style={{ color: "#1A0F0A", borderBottom: "0.5px solid #1A0F0A", paddingBottom: "1px" }}>Nouveautés</a>
@@ -31,10 +29,10 @@ export default function Navbar() {
           <div className="font-playfair italic" style={{ fontSize: "9px", letterSpacing: "4px", color: "#aaa", marginTop: "2px" }}>modest fashion</div>
         </div>
 
-        <div className="flex gap-5 items-center justify-end" style={{ color: "#1A0F0A" }}>
+        <div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "flex-end", color: "#1A0F0A" }}>
           <button className="hover:opacity-60 transition-opacity"><Search size={17} /></button>
           <button className="hover:opacity-60 transition-opacity"><Heart size={17} /></button>
-          <button className="hover:opacity-60 transition-opacity relative">
+          <button className="hover:opacity-60 transition-opacity" style={{ position: "relative" }}>
             <ShoppingBag size={17} />
             <span style={{ position: "absolute", top: "-6px", right: "-6px", background: "#1A0F0A", color: "#fff", fontSize: "8px", width: "14px", height: "14px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>0</span>
           </button>
@@ -42,8 +40,7 @@ export default function Navbar() {
       </nav>
 
       {menuOpen && (
-        <div className="sticky top-[75px] z-40 flex flex-col gap-4 px-7 py-6 md:hidden"
-          style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5" }}>
+        <div style={{ background: "#fff", borderBottom: "0.5px solid #f0ebe5", padding: "20px 28px", display: "flex", flexDirection: "column", gap: "16px", position: "sticky", top: "75px", zIndex: 40 }}>
           <a href="#" style={{ fontSize: "11px", color: "#1A0F0A", letterSpacing: "2px", textTransform: "uppercase" }}>Nouveautés</a>
           <a href="#" style={{ fontSize: "11px", color: "#666", letterSpacing: "2px", textTransform: "uppercase" }}>Collections</a>
           <a href="#" style={{ fontSize: "11px", color: "#666", letterSpacing: "2px", textTransform: "uppercase" }}>Robes</a>
