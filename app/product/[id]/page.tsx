@@ -15,8 +15,9 @@ const products = [
   { id: 10, name: "Ensemble Hana", description: "Blazer long et pantalon large, look professionnel et couvert.", price: 130, category: "Ensembles", sizes: ["XS", "S", "M", "L", "XL"] },
 ];
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = products.find(p => p.id === parseInt(params.id));
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const product = products.find(p => p.id === parseInt(id));
   if (!product) notFound();
 
   return (
